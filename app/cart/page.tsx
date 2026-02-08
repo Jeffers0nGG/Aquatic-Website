@@ -37,7 +37,7 @@ const CartPage = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-ocean-900 mb-2">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-teal-100 mb-2">
             Shopping Cart
           </h1>
           <p className="text-ocean-700">
@@ -55,7 +55,7 @@ const CartPage = () => {
             animate={{ opacity: 1, scale: 1 }}
           >
             <div className="text-6xl mb-4">🛒</div>
-            <h2 className="text-2xl font-serif font-bold text-ocean-900 mb-2">
+            <h2 className="text-2xl font-serif font-bold text-teal-100 mb-2">
               Your cart is empty
             </h2>
             <p className="text-ocean-700 mb-6">
@@ -87,7 +87,7 @@ const CartPage = () => {
                       key={cartItem.id}
                       variants={item}
                       layout
-                      className="flex gap-4 bg-white rounded-lg p-5 shadow-elevation-1 hover:shadow-elevation-2 transition-shadow"
+                      className="flex gap-4 bg-ocean-700 rounded-lg p-5 shadow-elevation-1 hover:shadow-elevation-2 transition-shadow"
                     >
                       {/* Image */}
                       <div className="relative w-24 h-24 flex-shrink-0 bg-ocean-100 rounded-lg overflow-hidden">
@@ -103,7 +103,7 @@ const CartPage = () => {
                       {/* Details */}
                       <div className="flex-1">
                         <Link href={`/product/${cartItem.id}`}>
-                          <h3 className="font-semibold text-ocean-900 hover:text-teal-600 transition-colors">
+                          <h3 className="font-semibold text-teal-100 hover:text-teal-600 transition-colors">
                             {cartItem.name}
                           </h3>
                         </Link>
@@ -111,7 +111,7 @@ const CartPage = () => {
                           {cartItem.color && <span>Color: {cartItem.color}</span>}
                           {cartItem.size && <span>Size: {cartItem.size}</span>}
                         </div>
-                        <p className="font-semibold text-ocean-900 mt-2">
+                        <p className="font-semibold text-teal-100 mt-2">
                           ${cartItem.price.toFixed(2)}
                         </p>
                       </div>
@@ -128,7 +128,7 @@ const CartPage = () => {
                           ✕
                         </motion.button>
 
-                        <div className="flex items-center gap-2 border border-ocean-200 rounded-lg">
+                        <div className="flex items-center gap-2 border border-ocean-600 rounded-lg">
                           <button
                             onClick={() =>
                               updateQuantity(
@@ -155,7 +155,7 @@ const CartPage = () => {
                           </button>
                         </div>
 
-                        <p className="font-semibold text-ocean-900">
+                        <p className="font-semibold text-teal-100">
                           ${(cartItem.price * cartItem.quantity).toFixed(2)}
                         </p>
                       </div>
@@ -173,11 +173,11 @@ const CartPage = () => {
               transition={{ delay: 0.2 }}
             >
               <div className="bg-gradient-to-br from-ocean-50 to-teal-50 rounded-lg p-6 sticky top-32">
-                <h2 className="text-xl font-serif font-bold text-ocean-900 mb-4">
+                <h2 className="text-xl font-serif font-bold text-teal-100 mb-4">
                   Order Summary
                 </h2>
 
-                <div className="space-y-3 pb-4 border-b border-ocean-200 mb-4">
+                <div className="space-y-3 pb-4 border-b border-ocean-600 mb-4">
                   <div className="flex justify-between text-ocean-700">
                     <span>Subtotal</span>
                     <span>${cartTotal().toFixed(2)}</span>
@@ -193,7 +193,7 @@ const CartPage = () => {
                 </div>
 
                 <div className="flex justify-between mb-6">
-                  <span className="font-semibold text-ocean-900">Total</span>
+                  <span className="font-semibold text-teal-100">Total</span>
                   <span className="text-2xl font-bold text-teal-600">
                     ${total.toFixed(2)}
                   </span>
@@ -211,7 +211,7 @@ const CartPage = () => {
 
                 <Link href="/products">
                   <motion.button
-                    className="w-full py-3 border-2 border-ocean-300 text-ocean-900 font-semibold rounded-lg hover:bg-ocean-50 transition-colors"
+                    className="w-full py-3 border-2 border-teal-600 text-teal-100 font-semibold rounded-lg hover:bg-ocean-600 transition-colors"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -220,7 +220,7 @@ const CartPage = () => {
                 </Link>
 
                 {/* Trust badges */}
-                <div className="mt-6 pt-4 border-t border-ocean-200 text-xs text-ocean-600 space-y-2">
+                <div className="mt-6 pt-4 border-t border-ocean-600 text-xs text-ocean-600 space-y-2">
                   <div className="flex items-center gap-2">
                     <span>✓</span>
                     <span>Secure checkout</span>

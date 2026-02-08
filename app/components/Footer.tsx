@@ -42,11 +42,11 @@ const Footer = () => {
           {/* Brand */}
           <motion.div variants={item}>
             <h3 className="text-2xl font-serif font-bold mb-4 flex items-center gap-2">
-              <span>🌊</span>
-              Aqua Luxe
+              <span>🦐</span>
+              Jeffers0n Aquat1cs
             </h3>
-            <p className="text-ocean-200 text-sm leading-relaxed">
-              Premium aquatic-inspired luxury fashion for the modern ocean lover.
+            <p className="text-teal-200 text-sm leading-relaxed">
+              Premium Neocaridina shrimps and aquatic care supplies for thriving shrimp colonies.
             </p>
           </motion.div>
 
@@ -80,10 +80,10 @@ const Footer = () => {
           {/* Company */}
           <motion.div variants={item}>
             <h4 className="font-semibold text-lg mb-4">Company</h4>
-            <ul className="space-y-2 text-ocean-200 text-sm">
+            <ul className="space-y-2 text-teal-200 text-sm">
               {footerLinks.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="hover:text-teal-300 transition-colors">
+                  <Link href={link.href} className="hover:text-coral-300 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -94,7 +94,7 @@ const Footer = () => {
           {/* Newsletter */}
           <motion.div variants={item}>
             <h4 className="font-semibold text-lg mb-4">Newsletter</h4>
-            <p className="text-ocean-200 text-sm mb-4">
+            <p className="text-teal-200 text-sm mb-4">
               Subscribe for exclusive offers and updates.
             </p>
             <div className="flex">
@@ -105,7 +105,7 @@ const Footer = () => {
                 aria-label="Email for newsletter"
               />
               <button
-                className="px-4 py-2 bg-teal-500 hover:bg-teal-600 transition-colors font-medium text-sm"
+                className="px-4 py-2 bg-coral-500 hover:bg-coral-600 transition-colors font-medium text-sm"
                 aria-label="Subscribe to newsletter"
               >
                 Sign Up
@@ -118,16 +118,16 @@ const Footer = () => {
         <div className="border-t border-ocean-700 my-8" />
 
         {/* Bottom */}
-        <div className="flex flex-col md:flex-row items-center justify-between text-ocean-300 text-sm">
-          <p>&copy; 2024 Aqua Luxe. All rights reserved.</p>
+        <div className="flex flex-col md:flex-row items-center justify-between text-teal-300 text-sm">
+          <p>&copy; 2026 Jeffers0n Aquat1cs. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <Link href="#" className="hover:text-teal-300 transition-colors">
+            <Link href="#" className="hover:text-coral-300 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-teal-300 transition-colors">
+            <Link href="#" className="hover:text-coral-300 transition-colors">
               Terms of Service
             </Link>
-            <Link href="#" className="hover:text-teal-300 transition-colors">
+            <Link href="#" className="hover:text-coral-300 transition-colors">
               Cookies
             </Link>
           </div>

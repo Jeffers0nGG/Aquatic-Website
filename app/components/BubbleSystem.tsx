@@ -18,8 +18,16 @@ const BubbleSystem = () => {
   const animationRef = useRef<number>();
   const mouseRef = useRef({ x: 0, y: 0 });
   const isActiveRef = useRef(true);
+  const bubbleCountRef = useRef<number | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -34,8 +42,10 @@ const BubbleSystem = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize bubbles (25-40 bubbles)
-    const bubbleCount = 30 + Math.floor(Math.random() * 10);
+    if (bubbleCountRef.current === null) {
+      bubbleCountRef.current = 30 + Math.floor(Math.random() * 10);
+    }
+    const bubbleCount = bubbleCountRef.current;
     bubblesRef.current = Array.from({ length: bubbleCount }, () => {
       const radius = 2 + Math.random() * 8;
       return {
@@ -163,7 +173,7 @@ const BubbleSystem = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [isClient]);
 
   return (
     <canvas

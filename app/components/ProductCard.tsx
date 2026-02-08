@@ -59,7 +59,7 @@ const ProductCard = ({ id, name, price, image, category, index = 0 }: ProductCar
     <motion.div variants={container} className="h-full">
       <Link href={`/product/${id}`} className="h-full flex flex-col group">
         <div
-          className="relative overflow-hidden bg-ocean-100 rounded-lg mb-4 aspect-product"
+          className="relative overflow-hidden bg-ocean-700 rounded-lg mb-4 aspect-product"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -123,13 +123,13 @@ const ProductCard = ({ id, name, price, image, category, index = 0 }: ProductCar
 
         {/* Content */}
         <div className="flex-1 flex flex-col">
-          <p className="text-xs text-ocean-600 font-medium uppercase tracking-widest mb-1">
+          <p className="text-xs text-teal-300 font-medium uppercase tracking-widest mb-1">
             {category}
           </p>
-          <h3 className="text-lg font-serif font-semibold text-ocean-900 mb-2 group-hover:text-teal-600 transition-colors line-clamp-2">
+          <h3 className="text-lg font-serif font-semibold text-teal-100 mb-2 group-hover:text-coral-400 transition-colors line-clamp-2">
             {name}
           </h3>
-          <p className="mt-auto text-lg font-semibold text-ocean-900">
+          <p className="mt-auto text-lg font-semibold text-coral-400">
             ${price.toFixed(2)}
           </p>
         </div>

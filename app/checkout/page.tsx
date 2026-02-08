@@ -69,7 +69,7 @@ const CheckoutPage = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
         >
-          <h1 className="text-3xl font-serif font-bold text-ocean-900 mb-4">
+          <h1 className="text-3xl font-serif font-bold text-teal-100 mb-4">
             Your cart is empty
           </h1>
           <Link href="/products">
@@ -102,8 +102,8 @@ const CheckoutPage = () => {
                     idx < stepIndex
                       ? 'bg-teal-500 border-teal-500 text-white'
                       : idx === stepIndex
-                      ? 'bg-white border-teal-500 text-teal-600'
-                      : 'bg-white border-ocean-200 text-ocean-400'
+                      ? 'bg-ocean-700 border-teal-500 text-teal-300'
+                      : 'bg-ocean-800 border-ocean-600 text-ocean-400'
                   }`}
                   whileHover={{ scale: 1.1 }}
                 >
@@ -111,7 +111,7 @@ const CheckoutPage = () => {
                 </motion.div>
                 <p
                   className={`text-sm font-medium ml-2 ${
-                    idx <= stepIndex ? 'text-ocean-900' : 'text-ocean-400'
+                    idx <= stepIndex ? 'text-teal-100' : 'text-ocean-400'
                   }`}
                 >
                   {s.label}
@@ -138,9 +138,9 @@ const CheckoutPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="bg-white rounded-lg p-6 md:p-8"
+                  className="bg-ocean-700 rounded-lg p-6 md:p-8"
                 >
-                  <h2 className="text-2xl font-serif font-bold text-ocean-900 mb-6">
+                  <h2 className="text-2xl font-serif font-bold text-teal-100 mb-6">
                     Shipping Information
                   </h2>
 
@@ -152,7 +152,7 @@ const CheckoutPage = () => {
                         placeholder="First Name"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className="px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                       />
                       <input
                         type="text"
@@ -160,7 +160,7 @@ const CheckoutPage = () => {
                         placeholder="Last Name"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className="px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                       />
                     </div>
 
@@ -170,7 +170,7 @@ const CheckoutPage = () => {
                       placeholder="Email Address"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
 
                     <input
@@ -179,7 +179,7 @@ const CheckoutPage = () => {
                       placeholder="Phone Number"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
 
                     <input
@@ -188,7 +188,7 @@ const CheckoutPage = () => {
                       placeholder="Street Address"
                       value={formData.address}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
 
                     <div className="grid grid-cols-2 gap-4">
@@ -198,7 +198,7 @@ const CheckoutPage = () => {
                         placeholder="City"
                         value={formData.city}
                         onChange={handleInputChange}
-                        className="px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                       />
                       <input
                         type="text"
@@ -206,7 +206,7 @@ const CheckoutPage = () => {
                         placeholder="State"
                         value={formData.state}
                         onChange={handleInputChange}
-                        className="px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                       />
                     </div>
 
@@ -217,13 +217,13 @@ const CheckoutPage = () => {
                         placeholder="ZIP Code"
                         value={formData.zip}
                         onChange={handleInputChange}
-                        className="px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                       />
                       <select
                         name="country"
                         value={formData.country}
                         onChange={handleInputChange}
-                        className="px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                       >
                         <option value="">Select Country</option>
                         <option value="US">United States</option>
@@ -250,9 +250,9 @@ const CheckoutPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="bg-white rounded-lg p-6 md:p-8"
+                  className="bg-ocean-700 rounded-lg p-6 md:p-8"
                 >
-                  <h2 className="text-2xl font-serif font-bold text-ocean-900 mb-6">
+                  <h2 className="text-2xl font-serif font-bold text-teal-100 mb-6">
                     Payment Information
                   </h2>
 
@@ -263,7 +263,7 @@ const CheckoutPage = () => {
                       placeholder="4532 1234 5678 9010"
                       value={cardData.cardNumber}
                       onChange={handleCardChange}
-                      className="w-full px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                       maxLength={19}
                     />
 
@@ -274,7 +274,7 @@ const CheckoutPage = () => {
                         placeholder="MM/YY"
                         value={cardData.expiry}
                         onChange={handleCardChange}
-                        className="px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                         maxLength={5}
                       />
                       <input
@@ -283,7 +283,7 @@ const CheckoutPage = () => {
                         placeholder="CVC"
                         value={cardData.cvc}
                         onChange={handleCardChange}
-                        className="px-4 py-2 border border-ocean-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        className="px-4 py-2 border border-ocean-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                         maxLength={3}
                       />
                     </div>
@@ -292,7 +292,7 @@ const CheckoutPage = () => {
                   <div className="mt-6 flex gap-3">
                     <motion.button
                       onClick={() => setStep('shipping')}
-                      className="flex-1 py-3 border-2 border-ocean-300 text-ocean-900 font-semibold rounded-lg hover:bg-ocean-50"
+                      className="flex-1 py-3 border-2 border-teal-600 text-teal-100 font-semibold rounded-lg hover:bg-ocean-600"
                       whileHover={{ scale: 1.02 }}
                     >
                       Back
@@ -315,20 +315,20 @@ const CheckoutPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="bg-white rounded-lg p-6 md:p-8"
+                  className="bg-ocean-700 rounded-lg p-6 md:p-8"
                 >
-                  <h2 className="text-2xl font-serif font-bold text-ocean-900 mb-6">
+                  <h2 className="text-2xl font-serif font-bold text-teal-100 mb-6">
                     Review Your Order
                   </h2>
 
-                  <div className="space-y-4 pb-6 border-b border-ocean-200 mb-6">
+                  <div className="space-y-4 pb-6 border-b border-ocean-600 mb-6">
                     {cartItems.map((item) => (
                       <div key={item.id} className="flex justify-between items-start">
                         <div>
-                          <p className="font-semibold text-ocean-900">{item.name}</p>
+                          <p className="font-semibold text-teal-100">{item.name}</p>
                           <p className="text-sm text-ocean-600">Qty: {item.quantity}</p>
                         </div>
-                        <p className="font-semibold text-ocean-900">
+                        <p className="font-semibold text-teal-100">
                           ${(item.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
@@ -348,7 +348,7 @@ const CheckoutPage = () => {
                       <span>Tax</span>
                       <span>${tax.toFixed(2)}</span>
                     </div>
-                    <div className="flex justify-between font-bold text-ocean-900 pt-2 border-t border-ocean-200">
+                    <div className="flex justify-between font-bold text-teal-100 pt-2 border-t border-ocean-600">
                       <span>Total</span>
                       <span>${total.toFixed(2)}</span>
                     </div>
@@ -357,7 +357,7 @@ const CheckoutPage = () => {
                   <div className="flex gap-3">
                     <motion.button
                       onClick={() => setStep('payment')}
-                      className="flex-1 py-3 border-2 border-ocean-300 text-ocean-900 font-semibold rounded-lg hover:bg-ocean-50"
+                      className="flex-1 py-3 border-2 border-teal-600 text-teal-100 font-semibold rounded-lg hover:bg-ocean-600"
                       whileHover={{ scale: 1.02 }}
                     >
                       Back
@@ -388,7 +388,7 @@ const CheckoutPage = () => {
                   >
                     ✨
                   </motion.div>
-                  <h2 className="text-3xl font-serif font-bold text-ocean-900 mb-2">
+                  <h2 className="text-3xl font-serif font-bold text-teal-100 mb-2">
                     Order Confirmed!
                   </h2>
                   <p className="text-ocean-700 mb-6">
@@ -417,19 +417,19 @@ const CheckoutPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <div className="bg-white rounded-lg p-6 sticky top-32 shadow-elevation-2">
-              <h3 className="font-serif text-xl font-bold text-ocean-900 mb-4">
+            <div className="bg-ocean-700 rounded-lg p-6 sticky top-32 shadow-elevation-2">
+              <h3 className="font-serif text-xl font-bold text-teal-100 mb-4">
                 Order Summary
               </h3>
 
-              <div className="space-y-3 pb-4 border-b border-ocean-200 mb-4 max-h-64 overflow-y-auto">
+              <div className="space-y-3 pb-4 border-b border-ocean-600 mb-4 max-h-64 overflow-y-auto">
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex justify-between text-sm">
                     <div>
-                      <p className="text-ocean-900 font-medium">{item.name}</p>
+                      <p className="text-teal-100 font-medium">{item.name}</p>
                       <p className="text-ocean-600 text-xs">Qty: {item.quantity}</p>
                     </div>
-                    <p className="text-ocean-900 font-semibold">
+                    <p className="text-teal-100 font-semibold">
                       ${(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
@@ -451,9 +451,9 @@ const CheckoutPage = () => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t-2 border-ocean-200">
+              <div className="pt-4 border-t-2 border-ocean-600">
                 <div className="flex justify-between items-center">
-                  <span className="font-semibold text-ocean-900">Total</span>
+                  <span className="font-semibold text-teal-100">Total</span>
                   <span className="text-2xl font-bold text-teal-600">
                     ${total.toFixed(2)}
                   </span>

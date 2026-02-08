@@ -1,6 +1,6 @@
-# 🚀 Getting Started with Aqua Luxe
+# 🚀 Getting Started with Jeffers0n Aquat1cs
 
-This guide will help you get the premium aquatic e-commerce website up and running in minutes.
+This guide will help you get the premium Neocaridina shrimp e-commerce website up and running in minutes.
 
 ## Quick Start
 

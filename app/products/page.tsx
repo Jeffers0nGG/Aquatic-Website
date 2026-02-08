@@ -43,17 +43,17 @@ export default function ProductsPage() {
     <div className="w-full">
       {/* Page Header */}
       <motion.section
-        className="py-12 md:py-16 border-b border-ocean-200"
+        className="py-12 md:py-16 border-b border-ocean-700"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-ocean-900 mb-3">
-            All Products
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-teal-100 mb-3">
+            All Shrimp Products
           </h1>
-          <p className="text-ocean-700 text-lg">
-            Browse our complete selection of aquatic pet care equipment and accessories.
+          <p className="text-teal-300 text-lg">
+            Browse our complete selection of Neocaridina shrimps and premium care supplies.
           </p>
         </div>
       </motion.section>
@@ -69,7 +69,7 @@ export default function ProductsPage() {
           >
             {/* Category Filter */}
             <div className="mb-8">
-              <h3 className="text-lg font-semibold text-ocean-900 mb-4">Categories</h3>
+              <h3 className="text-lg font-semibold text-teal-100 mb-4">Categories</h3>
               <div className="space-y-2">
                 {categories.map((category) => (
                   <motion.button
@@ -80,8 +80,8 @@ export default function ProductsPage() {
                     }}
                     className={`block w-full text-left px-4 py-2 rounded-lg transition-all ${
                       (!selectedCategory && category === 'All') || selectedCategory === category
-                        ? 'bg-teal-500 text-white'
-                        : 'text-ocean-700 hover:bg-ocean-100'
+                        ? 'bg-coral-500 text-white'
+                        : 'text-teal-300 hover:bg-ocean-700'
                     }`}
                     whileHover={{ x: 4 }}
                   >
@@ -93,11 +93,11 @@ export default function ProductsPage() {
 
             {/* Sort Filter */}
             <div>
-              <h3 className="text-lg font-semibold text-ocean-900 mb-4">Sort By</h3>
+              <h3 className="text-lg font-semibold text-teal-100 mb-4">Sort By</h3>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="w-full px-4 py-2 border border-ocean-200 rounded-lg bg-white text-ocean-900 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-4 py-2 border border-ocean-600 rounded-lg bg-ocean-700 text-teal-100 focus:outline-none focus:ring-2 focus:ring-coral-500"
                 aria-label="Sort products"
               >
                 <option value="newest">Newest</option>
@@ -114,7 +114,7 @@ export default function ProductsPage() {
             <div className="lg:hidden mb-6">
               <motion.button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className="flex items-center gap-2 px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition"
+                className="flex items-center gap-2 px-4 py-2 bg-coral-500 text-white rounded-lg hover:bg-coral-600 transition"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -127,7 +127,7 @@ export default function ProductsPage() {
 
             {/* Results Info */}
             <motion.p
-              className="text-ocean-700 text-sm mb-6"
+              className="text-teal-300 text-sm mb-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >

@@ -8,10 +8,17 @@ import { useCartStore } from './providers/CartStore';
 const NavigationHeader = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const lastScrollRef = useRef(0);
   const { cartItems } = useCartStore();
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const handleScroll = () => {
       const currentScroll = window.scrollY;
       const isScrollingDown = currentScroll > lastScrollRef.current;
@@ -29,14 +36,14 @@ const NavigationHeader = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isClient]);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
       <motion.header
-        className="fixed top-0 left-0 right-0 z-40 backdrop-blur-xl bg-white/70 border-b border-ocean-100"
+        className="fixed top-0 left-0 right-0 z-40 backdrop-blur-xl bg-ocean-900/90 border-b border-teal-600"
         initial={{ y: 0 }}
         animate={{ y: isVisible ? 0 : -100 }}
         transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
@@ -46,35 +53,35 @@ const NavigationHeader = () => {
             {/* Logo */}
             <Link
               href="/"
-              className="text-2xl font-serif font-bold text-ocean-900 flex items-center gap-2 hover:text-teal-600 transition-colors"
+              className="text-2xl font-serif font-bold text-teal-300 flex items-center gap-2 hover:text-coral-300 transition-colors"
             >
-              <span className="text-3xl">🌊</span>
-              Aqua Luxe
+              <span className="text-3xl">🦐</span>
+              Jeffers0n Aquat1cs
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               <Link
                 href="/"
-                className="text-sm font-medium text-ocean-700 hover:text-teal-600 transition-colors"
+                className="text-sm font-medium text-teal-300 hover:text-coral-300 transition-colors"
               >
                 Home
               </Link>
               <Link
                 href="/products"
-                className="text-sm font-medium text-ocean-700 hover:text-teal-600 transition-colors"
+                className="text-sm font-medium text-teal-300 hover:text-coral-300 transition-colors"
               >
                 Products
               </Link>
               <Link
                 href="/about"
-                className="text-sm font-medium text-ocean-700 hover:text-teal-600 transition-colors"
+                className="text-sm font-medium text-teal-300 hover:text-coral-300 transition-colors"
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="text-sm font-medium text-ocean-700 hover:text-teal-600 transition-colors"
+                className="text-sm font-medium text-teal-300 hover:text-coral-300 transition-colors"
               >
                 Contact
               </Link>
@@ -84,7 +91,7 @@ const NavigationHeader = () => {
             <div className="flex items-center gap-4">
               <Link
                 href="/cart"
-                className="relative p-2 text-ocean-700 hover:text-teal-600 transition-colors"
+                className="relative p-2 text-teal-300 hover:text-coral-300 transition-colors"
               >
                 <svg
                   className="w-6 h-6"
@@ -117,7 +124,7 @@ const NavigationHeader = () => {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 text-ocean-700 hover:text-teal-600 transition-colors"
+                className="md:hidden p-2 text-teal-300 hover:text-coral-300 transition-colors"
                 aria-label="Toggle menu"
               >
                 <svg
@@ -149,28 +156,28 @@ const NavigationHeader = () => {
               >
                 <Link
                   href="/"
-                  className="block px-4 py-2 text-sm font-medium text-ocean-700 hover:text-teal-600 hover:bg-ocean-50 rounded transition-colors"
+                  className="block px-4 py-2 text-sm font-medium text-teal-300 hover:text-coral-300 hover:bg-ocean-800 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   href="/products"
-                  className="block px-4 py-2 text-sm font-medium text-ocean-700 hover:text-teal-600 hover:bg-ocean-50 rounded transition-colors"
+                  className="block px-4 py-2 text-sm font-medium text-teal-300 hover:text-coral-300 hover:bg-ocean-800 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   Products
                 </Link>
                 <Link
                   href="/about"
-                  className="block px-4 py-2 text-sm font-medium text-ocean-700 hover:text-teal-600 hover:bg-ocean-50 rounded transition-colors"
+                  className="block px-4 py-2 text-sm font-medium text-teal-300 hover:text-coral-300 hover:bg-ocean-800 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href="/contact"
-                  className="block px-4 py-2 text-sm font-medium text-ocean-700 hover:text-teal-600 hover:bg-ocean-50 rounded transition-colors"
+                  className="block px-4 py-2 text-sm font-medium text-teal-300 hover:text-coral-300 hover:bg-ocean-800 rounded transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact

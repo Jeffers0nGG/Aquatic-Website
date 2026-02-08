@@ -57,7 +57,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           <span>/</span>
           <Link href="/products" className="hover:text-teal-600 transition">Products</Link>
           <span>/</span>
-          <span className="text-ocean-900">{product.name}</span>
+          <span className="text-teal-100">{product.name}</span>
         </motion.div>
 
         <motion.div
@@ -116,7 +116,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               <span className="inline-block mb-3 px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm font-semibold">
                 {product.category}
               </span>
-              <h1 className="text-3xl md:text-4xl font-serif font-bold text-ocean-900 mb-3">
+              <h1 className="text-3xl md:text-4xl font-serif font-bold text-teal-100 mb-3">
                 {product.name}
               </h1>
               <p className="text-3xl font-bold text-teal-600">${product.price.toFixed(2)}</p>
@@ -132,7 +132,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             {/* Specifications */}
             {product.specs && product.specs.length > 0 && (
               <div>
-                <h3 className="text-lg font-semibold text-ocean-900 mb-3">Specifications</h3>
+                <h3 className="text-lg font-semibold text-teal-100 mb-3">Specifications</h3>
                 <ul className="space-y-2">
                   {product.specs.map((spec, index) => (
                     <motion.li
@@ -152,10 +152,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
             {/* Quantity */}
             <div>
-              <label className="block text-sm font-semibold text-ocean-900 mb-3">
+              <label className="block text-sm font-semibold text-teal-100 mb-3">
                 Quantity
               </label>
-              <div className="flex items-center gap-3 border border-ocean-200 rounded-lg w-fit">
+              <div className="flex items-center gap-3 border border-ocean-600 rounded-lg w-fit">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="px-4 py-2 hover:bg-ocean-100 transition"
@@ -192,14 +192,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             </motion.button>
 
             {/* Additional Info */}
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-ocean-200">
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-ocean-600">
               <div>
                 <p className="text-xs uppercase text-ocean-600 font-semibold mb-1">Shipping</p>
-                <p className="text-ocean-900">Free on orders over $200</p>
+                <p className="text-teal-100">Free on orders over $200</p>
               </div>
               <div>
                 <p className="text-xs uppercase text-ocean-600 font-semibold mb-1">Returns</p>
-                <p className="text-ocean-900">30-day return window</p>
+                <p className="text-teal-100">30-day return window</p>
               </div>
             </div>
           </motion.div>
@@ -208,12 +208,12 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         {/* Related Products Section */}
         {relatedProducts.length > 0 && (
           <motion.section
-            className="mt-16 md:mt-24 pt-16 border-t border-ocean-200"
+            className="mt-16 md:mt-24 pt-16 border-t border-ocean-600"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-serif font-bold text-ocean-900 mb-8">
+            <h2 className="text-3xl font-serif font-bold text-teal-100 mb-8">
               More {product.category}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -234,7 +234,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <h3 className="font-semibold text-ocean-900 mb-2 group-hover:text-teal-600 transition">
+                  <h3 className="font-semibold text-teal-100 mb-2 group-hover:text-coral-400 transition">
                     {relProduct.name}
                   </h3>
                   <p className="text-teal-600 font-bold">${relProduct.price.toFixed(2)}</p>

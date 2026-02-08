@@ -95,9 +95,9 @@ const HeroSection = ({ title, subtitle, image, cta }: HeroSectionProps) => {
         <div className="max-w-2xl">
           <motion.p
             variants={item}
-            className="text-teal-300 text-sm md:text-base font-medium uppercase tracking-widest mb-4"
+            className="text-coral-400 text-sm md:text-base font-medium uppercase tracking-widest mb-4"
           >
-            Discover Luxury
+            Experience Premium
           </motion.p>
           <motion.h1
             variants={item}
@@ -113,8 +113,8 @@ const HeroSection = ({ title, subtitle, image, cta }: HeroSectionProps) => {
             <motion.div variants={item} className="flex gap-4 flex-wrap">
               <Link href={cta.href}>
                 <motion.button
-                  className="px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-full transition-all duration-300"
-                  whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(20, 184, 166, 0.6)' }}
+                  className="px-8 py-4 bg-coral-500 hover:bg-coral-600 text-white font-semibold rounded-full transition-all duration-300"
+                  whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(255, 107, 84, 0.6)' }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {cta.text}
