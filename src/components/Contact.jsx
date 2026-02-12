@@ -15,8 +15,9 @@ const Contact = ({ isInquiryOpen, setIsInquiryOpen }) => {
                 </svg>
             ),
             title: 'Email',
-            value: 'contact@neoshrimp.com',
+            value: 'aciojenan@gmail.com',
             description: 'Send us an email anytime',
+            link: 'mailto:aciojenan@gmail.com'
         },
         {
             icon: (
@@ -25,8 +26,9 @@ const Contact = ({ isInquiryOpen, setIsInquiryOpen }) => {
                 </svg>
             ),
             title: 'Facebook',
-            value: 'NeoShrimp',
+            value: 'Jeffers0n Aquatics',
             description: 'Message us on Messenger',
+            link: 'https://www.facebook.com/jeffers0ngg2f4st'
         },
         {
             icon: (
@@ -36,8 +38,9 @@ const Contact = ({ isInquiryOpen, setIsInquiryOpen }) => {
                 </svg>
             ),
             title: 'Location',
-            value: 'Metro Area',
+            value: 'Antipolo City, Philippines',
             description: 'Local pickup available',
+            link: 'https://maps.google.com/?q=Antipolo+City+Philippines'
         },
     ];
 
@@ -82,7 +85,13 @@ const Contact = ({ isInquiryOpen, setIsInquiryOpen }) => {
                                         </div>
                                         <div>
                                             <h4 className="font-semibold text-white mb-1">{method.title}</h4>
-                                            <p className="text-neon-cyan font-medium mb-1">{method.value}</p>
+                                            {method.link ? (
+                                                <a href={method.link} target="_blank" rel="noopener noreferrer" className="text-neon-cyan font-medium mb-1 hover:underline block">
+                                                    {method.value}
+                                                </a>
+                                            ) : (
+                                                <p className="text-neon-cyan font-medium mb-1">{method.value}</p>
+                                            )}
                                             <p className="text-sm text-gray-400">{method.description}</p>
                                         </div>
                                     </div>

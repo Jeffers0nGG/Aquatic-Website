@@ -1,13 +1,48 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useScroll, useScrollProgress, useReducedMotion } from '../hooks/useCustomHooks';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { useScroll as useScrollHook, useScrollProgress, useReducedMotion } from '../hooks/useCustomHooks';
 import { scrollToSection } from '../utils/helpers';
+import logoImg from '../assets/logo/Jeffers0nAquaticsLOGO.png';
 
 const Navigation = ({ onInquireClick }) => {
-    const { isAtTop } = useScroll();
+    const { isAtTop } = useScrollHook();
     const progress = useScrollProgress();
     const prefersReducedMotion = useReducedMotion();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
+
+    // State to track if we are currently scrolling programmatically
+    const [disableScrollHide, setDisableScrollHide] = useState(false);
+    const scrollTimeoutRef = useRef(null);
+
+    const { scrollY } = useScroll();
+
+    useMotionValueEvent(scrollY, "change", (latestVal) => {
+        // If we are in "programmatic scroll" mode, ensure navbar is visible and do nothing else
+        if (disableScrollHide) {
+            if (isHidden) setIsHidden(false);
+            return;
+        }
+
+        const previousVal = scrollY.getPrevious();
+        if (previousVal === undefined) return;
+        const diff = latestVal - previousVal;
+
+        // "Always visible when near top (scrollY < 80px)."
+        if (latestVal < 80) {
+            if (isHidden) setIsHidden(false);
+            return;
+        }
+
+        // "Hide only when: User scrolls down ... Scroll delta exceeds threshold"
+        if (diff > 8) {
+            if (!isHidden) setIsHidden(true);
+        }
+        // "Show immediately when user scrolls up."
+        else if (diff < -5) {
+            if (isHidden) setIsHidden(false);
+        }
+    });
 
     const navLinks = [
         { label: 'Home', id: 'hero' },
@@ -21,23 +56,41 @@ const Navigation = ({ onInquireClick }) => {
     ];
 
     const handleNavClick = (id) => {
+        // 1. Force navbar visible
+        setIsHidden(false);
+
+        // 2. Disable hide-on-scroll logic temporarily
+        setDisableScrollHide(true);
+
+        // Clear existing timeout if rapid clicks
+        if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+
+        // 3. Perform scroll
         scrollToSection(id);
         setIsMobileMenuOpen(false);
+
+        // 4. Re-enable hide logic after scroll animation stabilizes (800ms)
+        scrollTimeoutRef.current = setTimeout(() => {
+            setDisableScrollHide(false);
+        }, 800);
     };
 
-    // Intro Snap-in Animation
-    const navVariants = {
-        hidden: { opacity: 0, y: 12, filter: 'blur(6px)' },
+    // Variants for scroll visibility - Engineered Smoothness
+    const navScrollVariants = {
         visible: {
-            opacity: 1,
             y: 0,
-            filter: 'blur(0px)',
+            opacity: 1,
             transition: {
-                delay: 2.8, // Match Hero content appearance
-                type: 'spring',
-                stiffness: 100,
-                damping: 20,
-                mass: 1
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1] // Custom ease-out cubic
+            }
+        },
+        hidden: {
+            y: "-110%",
+            opacity: 0, // Slight fade out for softness
+            transition: {
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1]
             }
         },
     };
@@ -46,75 +99,82 @@ const Navigation = ({ onInquireClick }) => {
         <>
             {/* Scroll progress indicator */}
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 3.2 }}
-                className="fixed top-0 left-0 right-0 h-1 z-50 bg-navy-900/50"
+                animate={{
+                    y: isHidden ? -20 : 0,
+                }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="fixed top-0 left-0 right-0 h-1 z-50 bg-navy-900/50 pointer-events-none"
             >
                 <div
-                    className="h-full bg-gradient-to-r from-neon-violet via-neon-purple to-neon-cyan transition-all duration-300 shadow-glow-md"
+                    className="h-full bg-gradient-to-r from-neon-violet via-neon-purple to-neon-cyan shadow-glow-md"
                     style={{ width: `${progress}%` }}
                 />
             </motion.div>
 
-            {/* Navigation bar */}
+            {/* Navigation bar container */}
             <motion.nav
-                variants={navVariants}
-                initial={prefersReducedMotion ? "visible" : "hidden"}
-                animate="visible"
-                className={`fixed top-1 left-0 right-0 z-40 transition-all duration-300 ${isAtTop ? 'py-4' : 'py-2'
+                variants={navScrollVariants}
+                initial="visible"
+                animate={isHidden ? "hidden" : "visible"}
+                className={`fixed top-0 left-0 right-0 z-40 flex justify-center transition-all duration-300 pointer-events-none ${isAtTop ? 'py-6' : 'py-3'
                     }`}
             >
-                <div className="container-custom px-4">
+                <div className="container-custom px-4 pointer-events-auto w-full">
+                    {/* The subtle surface pill */}
                     <div
-                        className={`${isAtTop ? 'glass' : 'glass-strong'
-                            } rounded-2xl px-6 py-4 shadow-glass transition-all duration-300 ${!isAtTop && 'shadow-glow-sm'
-                            }`}
+                        className={`
+                    flex items-center justify-between rounded-2xl px-6 py-3 transition-all duration-300
+                    backdrop-blur-md border border-white/10 shadow-lg
+                    ${isAtTop ? 'bg-navy-900/40 md:bg-white/5' : 'bg-navy-900/80 md:bg-white/5'}
+                `}
+                        style={{
+                            WebkitBackdropFilter: 'blur(12px)',
+                            backdropFilter: 'blur(12px)',
+                        }}
                     >
-                        <div className="flex items-center justify-between">
-                            {/* Logo */}
-                            <button
-                                onClick={() => handleNavClick('hero')}
-                                className="flex items-center space-x-2 group focus:outline-none focus:ring-2 focus:ring-neon-violet rounded-lg px-2 py-1"
-                                aria-label="Go to home"
-                            >
-                                <div className="w-10 h-10 bg-gradient-to-br from-neon-violet to-neon-cyan rounded-lg flex items-center justify-center shadow-glow-sm group-hover:shadow-glow-md transition-all duration-300">
-                                    <span className="text-2xl">🦐</span>
-                                </div>
-                                <span className="text-xl font-bold bg-gradient-to-r from-white to-neon-violet bg-clip-text text-transparent hidden sm:block">
-                                    NeoShrimp
-                                </span>
-                            </button>
-
-                            {/* Desktop Navigation Links */}
-                            <div className="hidden lg:flex items-center space-x-1">
-                                {navLinks.map((link) => (
-                                    <button
-                                        key={link.id}
-                                        onClick={() => handleNavClick(link.id)}
-                                        className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neon-violet relative group overflow-hidden"
-                                    >
-                                        <span className="relative z-10">{link.label}</span>
-                                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-neon-violet transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-                                    </button>
-                                ))}
+                        {/* Logo */}
+                        <button
+                            onClick={() => handleNavClick('hero')}
+                            className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-neon-violet rounded-lg pr-2 py-1"
+                            aria-label="Go to home"
+                        >
+                            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shadow-inner overflow-hidden bg-white/5 border border-white/5 transition-transform duration-300 group-hover:scale-105">
+                                <img src={logoImg} alt="Jeffers0n Aquatics Logo" className="w-full h-full object-contain p-1" />
                             </div>
+                            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-white via-white to-gray-300 bg-clip-text text-transparent hidden sm:block tracking-wide">
+                                Jeffers0n Aquatics
+                            </span>
+                        </button>
 
-                            {/* CTA Button */}
-                            <div className="hidden md:flex items-center space-x-4">
+                        {/* Desktop Navigation Links */}
+                        <div className="hidden lg:flex items-center space-x-1">
+                            {navLinks.map((link) => (
                                 <button
-                                    onClick={onInquireClick}
-                                    className="btn-primary"
-                                    aria-label="Open inquiry form"
+                                    key={link.id}
+                                    onClick={() => handleNavClick(link.id)}
+                                    className="relative px-4 py-2 text-sm font-medium text-white/90 hover:text-white rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-neon-violet group"
                                 >
-                                    Inquire
+                                    <span className="relative z-10">{link.label}</span>
+                                    {/* Hover indicator */}
+                                    <span className="absolute inset-0 bg-white/10 rounded-lg scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 ease-out"></span>
                                 </button>
-                            </div>
+                            ))}
+                        </div>
+
+                        {/* CTA & Mobile Menu */}
+                        <div className="flex items-center space-x-3 sm:space-x-4">
+                            <button
+                                onClick={onInquireClick}
+                                className="hidden md:flex btn-primary py-2 px-5 text-sm"
+                                aria-label="Open inquiry form"
+                            >
+                                Inquire
+                            </button>
 
                             {/* Mobile menu button */}
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neon-violet"
+                                className="lg:hidden p-2 text-white/90 hover:bg-white/10 rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-neon-violet"
                                 aria-label="Toggle mobile menu"
                                 aria-expanded={isMobileMenuOpen}
                             >
@@ -135,33 +195,33 @@ const Navigation = ({ onInquireClick }) => {
                                 </svg>
                             </button>
                         </div>
-
-                        {/* Mobile menu */}
-                        {isMobileMenuOpen && (
-                            <div className="lg:hidden mt-4 pt-4 border-t border-white/10 animate-fade-in">
-                                <div className="flex flex-col space-y-2">
-                                    {navLinks.map((link) => (
-                                        <button
-                                            key={link.id}
-                                            onClick={() => handleNavClick(link.id)}
-                                            className="px-4 py-3 text-left text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neon-violet"
-                                        >
-                                            {link.label}
-                                        </button>
-                                    ))}
-                                    <button
-                                        onClick={() => {
-                                            onInquireClick();
-                                            setIsMobileMenuOpen(false);
-                                        }}
-                                        className="btn-primary w-full mt-2"
-                                    >
-                                        Inquire
-                                    </button>
-                                </div>
-                            </div>
-                        )}
                     </div>
+
+                    {/* Mobile menu dropdown */}
+                    {isMobileMenuOpen && (
+                        <div className="lg:hidden mt-2 p-4 rounded-xl bg-navy-900/95 backdrop-blur-xl border border-white/10 animate-fade-in shadow-xl">
+                            <div className="flex flex-col space-y-2">
+                                {navLinks.map((link) => (
+                                    <button
+                                        key={link.id}
+                                        onClick={() => handleNavClick(link.id)}
+                                        className="px-4 py-3 text-left text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors duration-300"
+                                    >
+                                        {link.label}
+                                    </button>
+                                ))}
+                                <button
+                                    onClick={() => {
+                                        onInquireClick();
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="btn-primary w-full mt-2 justify-center"
+                                >
+                                    Inquire
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </motion.nav>
         </>
