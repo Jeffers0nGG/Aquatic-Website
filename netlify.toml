@@ -1,8 +1,6 @@
-@'
 [build]
-command = "npm ci && npm run build"
-publish = "dist"
+  command = "npm ci && npm run build"
+  publish = "dist"
 
 [build.environment]
-NODE_VERSION = "20"
-'@ | Set-Content -Encoding UTF8 netlify.toml
+  NODE_VERSION = "20"
